@@ -12,13 +12,12 @@ class NewQuestion extends Component {
     const optionTwo = document.getElementById("optionTwo").value
     const qAuthor = this.props.authedUser.id
     const users = this.props.users
-    console.log("usersinnewq ", users)
     document.getElementById("wouldYouRather").reset();
   	this.props.dispatch(handleSaveQuestion({ optionOneText: optionOne, optionTwoText: optionTwo , author: qAuthor }, users, qAuthor));
   }
   isAuthed = () => {
     let isAuthed = true
-    if (this.props.authedUser === "AUTHED_ID" || this.props.authedUser.length===0) isAuthed = false
+    if (this.props.authedUser.id === "" || this.props.authedUser.length===0) isAuthed = false
     else isAuthed = true
     document.getElementById("submitButton").disabled = !isAuthed
   }

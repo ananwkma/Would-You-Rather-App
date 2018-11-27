@@ -6,20 +6,29 @@ import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
 import { connect } from 'react-redux'
 import { withRouter, Link, Route } from 'react-router-dom'
+import { handleSetAuthedUser } from '../actions'
 
 class NavBar extends React.Component {
   
+  logout = () => {    
+    return this.props.dispatch(handleSetAuthedUser({ id: "" }));
+  }
+
   displayAuthed(){
     let authed = this.props.authedUser
-    if (authed === 'AUTHED_ID') 
-      return <h5>
-        You are not logged in
-        </h5>
-    else if (authed) 
-      return <h5> 
-        Logged in as: {authed.id}
-      </h5>
-    else return
+    console.log(authed)
+    if (authed.id) 
+      return <div>
+        <Link to='/'>
+          <button onClick={this.logout}>Logout</button>
+        </Link>
+        <h5> Logged in as: {authed.id} </h5>
+      </div>
+    else 
+      return <div>
+          <Link to='/login'> Login </Link>
+          <h5> You are not logged in </h5>
+        </div>
   }
   
 	render() {
@@ -28,7 +37,6 @@ class NavBar extends React.Component {
         <Link to='/'> Home </Link>
       	<Link to='/add'> New Question </Link>
       	<Link to='/leader'> Leaderboards </Link>
-      	<Link to='/login'> Login </Link>
         { this.displayAuthed() } 
         <div className='container'>
 	        <Route path='/' exact component={Home} />

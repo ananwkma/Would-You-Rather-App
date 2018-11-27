@@ -5,13 +5,11 @@ export const ANSWER_QUESTION = 'ANSWER_QUESTION'
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const GET_USERS = 'GET_USERS'
-export const AUTHED_ID = 'AUTHED_ID'
 
-function setAuthedUser (id, AUTHED_ID) {
+function setAuthedUser (id) {
   return {
 	type: SET_AUTHED_USER,
     id,
-    AUTHED_ID,
   }
 }
 
@@ -48,7 +46,7 @@ export function receiveUsers (users) {
   }
 }*/
 
-export function handleSetAuthedUser (id, AUTHED_ID) {
+export function handleSetAuthedUser (id) {
   return (dispatch) => {
     dispatch(setAuthedUser(id))
   }

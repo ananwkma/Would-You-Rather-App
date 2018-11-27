@@ -7,10 +7,13 @@ class Login extends Component {
 
   setAuthedUser = () => {
   	const e = document.getElementById("userNameSelection");
-	if (e!=null) {
-      const id = e.options[e.selectedIndex].value;
-	  return this.props.dispatch(handleSetAuthedUser({ id: id }));
-	}
+  	if (e!=null) {
+        const id = e.options[e.selectedIndex].value;
+        if(!(id===""||id.length===0)) {
+          return this.props.dispatch(handleSetAuthedUser({ id: id }));
+        }
+        return 
+  	}
   }
 
   populateValues() {
@@ -21,13 +24,13 @@ class Login extends Component {
           <option key={id} value={id}>{id}</option>
           )) }
       </select>
-	</div>
+	  </div>
   }
 
   render() {
       return (
           <div>
-    	   {this.populateValues()}
+    	      {this.populateValues()}
             <Link to='/'> 
               <button onClick={this.setAuthedUser}>Submit</button> 
             </Link>

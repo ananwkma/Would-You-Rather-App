@@ -1,5 +1,5 @@
 import { _getQuestions, _getUsers, _saveQuestion } from '../_DATA'
-import { receiveUsers, receiveQuestions, handleSetAuthedUser, SAVE_QUESTION, AUTHED_ID } from './index'
+import { receiveUsers, receiveQuestions, handleSetAuthedUser, SAVE_QUESTION } from './index'
 
 export function saveQuestion(formattedQuestion, users, authedUser) {
 	return {
@@ -12,8 +12,8 @@ export function saveQuestion(formattedQuestion, users, authedUser) {
 
 export function handleSaveQuestion(question, users, authedUser) {
   return (dispatch) => {
-  	_saveQuestion(question) //{ optionOneText, optionTwoText, author }
-      .then( (formattedQuestion) => {
+  	_saveQuestion(question) 
+      .then((formattedQuestion) => {
     	dispatch(saveQuestion(formattedQuestion, users, authedUser))
       });
   };
@@ -26,7 +26,7 @@ export function handleInitialData () {
       .then(([users, questions]) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        dispatch(handleSetAuthedUser(AUTHED_ID))
+        dispatch(handleSetAuthedUser(""))
         //dispatch(hideLoading())
       })
   }

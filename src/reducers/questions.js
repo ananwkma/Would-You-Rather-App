@@ -6,19 +6,14 @@ export default function questions (state={}, action) {
     case RECEIVE_QUESTIONS:
       return action.questions;
     case SAVE_QUESTION:
-      let formattedQuestion = action.formattedQuestion;
-      let users = action.users
-      let authedUser = action.authedUser
-      console.log("user ",users)
-      console.log("formattedQuestion ",formattedQuestion)
-      console.log("authedUser ", authedUser)
+      let formattedQuestion = action.formattedQuestion
       return {...state,       
        [formattedQuestion.id]: formattedQuestion,
-       
       };
     case ANSWER_QUESTION:
-      let qid = action.qid;
-      let answer = action.answer;
+      let qid = action.qid
+      let answer = action.answer
+      let authedUser = action.authedUser
       
       return { ...state,
         [qid]: {

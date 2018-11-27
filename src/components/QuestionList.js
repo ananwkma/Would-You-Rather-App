@@ -9,7 +9,7 @@ class QuestionList extends Component {
   }
   renderQuestions() {
       //if (this.state.showUnanswered)
-      let thisUser = this.props.authedUser.id
+      //let thisUser = this.props.authedUser.id
       return <ul>
     	{ /*this.props.questionIds.filter((id) => (
           <li key={id}> <Question id={id}/> </li>  

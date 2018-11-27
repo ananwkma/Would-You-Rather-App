@@ -7,7 +7,7 @@ export default function authedUser (state = [], action) {
       case GET_AUTHED_USER :
         return console.log('id: ', action.id)
       case SET_AUTHED_USER :
-        return action.AUTHED_ID = action.id
+        return action.id
       default :
         return state
     }
