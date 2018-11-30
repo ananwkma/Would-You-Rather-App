@@ -7,6 +7,10 @@ class Question extends Component {
   
   isQuestionPage() { return (this.props.location.pathname.includes('/question') ? true : false) }
   
+  saveVote() {
+
+  }
+
   render() {
     const { question } = this.props;
     if (question == null) { return <p>This Question doesn't exist</p> }
@@ -22,7 +26,7 @@ class Question extends Component {
           <input type="radio" name="option" value="optionTwo"/> {optionTwo.text}<br/>
           <div> timestamp: {timestamp} </div>
           <div> id: {id} </div>
-          <input type="submit" value="Submit"/>
+          <input type="button" id="submitButton" onClick={this.saveVote} value="Submit"/> 
         </form>
       )
     }

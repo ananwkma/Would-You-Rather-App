@@ -16,7 +16,6 @@ class NavBar extends React.Component {
 
   displayAuthed(){
     let authed = this.props.authedUser
-    console.log(authed)
     if (authed.id) 
       return <div>
         <Link to='/'>
