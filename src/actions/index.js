@@ -13,6 +13,15 @@ function setAuthedUser (id) {
   }
 }
 
+function answerQuestion (authedUser, qid, answer) {
+  return {
+  type: ANSWER_QUESTION,
+    authedUser,
+    qid,
+    answer,
+  }
+}
+
 export function receiveQuestions (questions) {
   return {
     type: RECEIVE_QUESTIONS,
@@ -27,38 +36,14 @@ export function receiveUsers (users) {
   }
 }
 
-/*function saveQuestion ({optionOneText, optionTwoText, author, id}) {
-  return {
-	type: SAVE_QUESTION,
-    optionOneText,
-    optionTwoText,
-    author,
-    id
-  }
-}*/
-
-/*function answerQuestion (authedUser, qid, answer) {
-  return {
-	type: ANSWER_QUESTION,
-    authedUser,
-    qid,
-    answer,
-  }
-}*/
-
 export function handleSetAuthedUser (id) {
   return (dispatch) => {
     dispatch(setAuthedUser(id))
   }
 }
 
-/*export function handleGetUsers () {
-	return (dispatch) => {
-    	return _getUsers()
-          .then((users) => {
-          		const userArr = []
-          		for (var user in users) userArr.push(user)
-              	dispatch(getUsers(userArr))
-          })
-    }
-}*/
+export function handleAnswerQuestion (authedUser, qid, answer) {
+  return (dispatch) => {
+    dispatch(answerQuestion(authedUser, qid, answer))
+  }
+}

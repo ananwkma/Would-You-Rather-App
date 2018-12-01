@@ -1,7 +1,7 @@
 import { _getQuestions, _getUsers, _saveQuestion } from '../_DATA'
 import { receiveUsers, receiveQuestions, handleSetAuthedUser, SAVE_QUESTION } from './index'
 
-export function saveQuestion(formattedQuestion, users, authedUser) {
+function saveQuestion(formattedQuestion, users, authedUser) {
 	return {
     	type: SAVE_QUESTION,
         formattedQuestion,

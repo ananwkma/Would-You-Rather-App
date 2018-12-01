@@ -33,9 +33,9 @@ class QuestionList extends Component {
         } 
       }
       else return <ul>
-            {questionIds
-              .map(id => <li key={id}> <Question id={id}/> </li>)}
-          </ul>
+        {questionIds
+          .map(id => <li key={id}> <Question id={id}/> </li>)}
+      </ul>
        
   }
   

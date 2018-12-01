@@ -14,7 +14,6 @@ export default function questions (state={}, action) {
       let qid = action.qid
       let answer = action.answer
       let authedUser = action.authedUser
-      
       return { ...state,
         [qid]: {
           ...state[qid],

@@ -1,5 +1,5 @@
 import {
-  RECEIVE_USERS, SAVE_QUESTION
+  RECEIVE_USERS, SAVE_QUESTION, ANSWER_QUESTION
 } from '../actions'
 
 export default function users (state = [], action) {
@@ -7,16 +7,27 @@ export default function users (state = [], action) {
       case RECEIVE_USERS :
         return action.users
       case SAVE_QUESTION:
-      	let authedUser = action.authedUser
-      	let users = action.users
+      	let thisUser = action.authedUser
       	let formattedQuestion = action.formattedQuestion
       	return { 
       		...state, 
-      		[authedUser]: {
-      			...state[authedUser],
-      			questions: state[authedUser].questions.concat(formattedQuestion.id)
+      		[thisUser]: {
+      			...state[thisUser],
+      			questions: state[thisUser].questions.concat(formattedQuestion.id)
       		}
       	}
+      case ANSWER_QUESTION:
+        let { qid, answer, authedUser } = action
+        return {
+          ...state,
+          [authedUser] : {
+            ...state[authedUser],
+            answers: {
+              ...state[authedUser].answers,
+              [qid]:answer
+            }
+          }
+        }
       default :
         return state
     }
