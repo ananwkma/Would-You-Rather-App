@@ -14,19 +14,23 @@ class NavBar extends React.Component {
     return this.props.dispatch(handleSetAuthedUser({ id: "" }));
   }
 
+  isAuthed(){
+    return !(this.props.authedUser.id == '') &&
+           !(this.props.authedUser.id == null) ? 
+           true : false
+  }
+
   displayAuthed(){
-    let authed = this.props.authedUser
-    console.log(authed)
-    if (authed.id) 
+    if (this.isAuthed()) 
       return <div>
         <Link to='/'>
           <button onClick={this.logout}>Logout</button>
         </Link>
-        <h5> Logged in as: {authed.id} </h5>
+        <h5> Logged in as: {this.props.authedUser.id} </h5>
       </div>
     else 
       return <div>
-          <Link to='/login'> Login </Link>
+          <Link to='/login'> <button> Login </button> </Link>
           <h5> You are not logged in </h5>
         </div>
   }
@@ -34,9 +38,9 @@ class NavBar extends React.Component {
 	render() {
     return (
       <div>    
-        <Link to='/'> Home </Link>
-      	<Link to='/add'> New Question </Link>
-      	<Link to='/leader'> Leaderboards </Link>
+        <Link to='/'> <button> Home </button> </Link>
+      	<Link to='/add'> <button> NewQuestion </button> </Link>
+      	<Link to='/leader'> <button disabled={!this.isAuthed()}> Leaderboards </button> </Link>
         { this.displayAuthed() } 
         <div className='container'>
 	        <Route path='/' exact component={Home} />

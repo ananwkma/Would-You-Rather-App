@@ -8,16 +8,35 @@ class QuestionList extends Component {
     showUnanswered: true
   }
   renderQuestions() {
-      //if (this.state.showUnanswered)
-      //let thisUser = this.props.authedUser.id
-      return <ul>
-    	{ /*this.props.questionIds.filter((id) => (
-          <li key={id}> <Question id={id}/> </li>  
-        )) */}
-        { this.props.questionIds.map((id) => (
-          <li key={id}> <Question id={id}/> </li>
-        )) }
+      let thisUser = this.props.authedUser
+      let unanswered = this.state.showUnanswered
+      let questionIds = this.props.questionIds
+      if (thisUser) {
+        let answeredQuestions = Object.keys(thisUser.answers)
+         //unanswered questions
+        if (unanswered) {
+          return <ul>
+            {questionIds
+              .filter(id => !answeredQuestions.includes(id))
+              .map(aId => (<li key={aId}> <Question id={aId}/> </li>))
+            }
+          </ul>
+        }
+        //answered questions
+        else if (!unanswered) {
+          return <ul>
+            {questionIds
+              .map(id => (answeredQuestions
+              .map(aId => ((aId === id) ?  <li key={aId}> <Question id={aId}/> </li> : null))
+            ))}
+          </ul>
+        } 
+      }
+      else return <ul>
+        {questionIds
+          .map(id => <li key={id}> <Question id={id}/> </li>)}
       </ul>
+       
   }
   
   render() {
@@ -32,7 +51,7 @@ class QuestionList extends Component {
 }
 
 function mapStateToProps(state) {
-  let authedUser = state.authedUser
+  let authedUser = state.users[state.authedUser.id]
   let questions = state.questions
   let questionIds = Object.keys(questions)
         .sort((a,b) => questions[b].timestamp - questions[a].timestamp)

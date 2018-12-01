@@ -13,7 +13,12 @@ class NewQuestion extends Component {
     const qAuthor = this.props.authedUser.id
     const users = this.props.users
     document.getElementById("wouldYouRather").reset();
-  	this.props.dispatch(handleSaveQuestion({ optionOneText: optionOne, optionTwoText: optionTwo , author: qAuthor }, users, qAuthor));
+  	this.props.dispatch(handleSaveQuestion({ 
+      optionOneText: optionOne, 
+      optionTwoText: optionTwo, 
+      author: qAuthor }, 
+      users, 
+      qAuthor));
   }
   isAuthed = () => {
     let isAuthed = true
