@@ -42,13 +42,21 @@ class Question extends Component {
     return(
       <div>
         <div> Number of Votes for option One: {optOneVotes} </div>
+        {this.props.question.optionOne.votes.includes(this.props.authedUser.id) ? 
+          "You voted for this!" : null}
         <div> {thisQuestion.optionOne.text} </div>
-        <div> Percentage of Votes: {100*optOneVotes/sumVotes} % </div>
+        <div> Percentage of Votes: {100*optOneVotes/sumVotes} % </div> <br/>
         <div> Number of Votes for option Two: {optTwoVotes} </div>
+        {this.props.question.optionTwo.votes.includes(this.props.authedUser.id) ? 
+          "You voted for this!" : null}
         <div> {thisQuestion.optionTwo.text} </div>
         <div> Percentage of Votes: {100*optTwoVotes/sumVotes} % </div>
       </div>
     )         
+  }
+
+  checkPicture () {
+    return (this.props.pictureURL) ? `${this.props.pictureURL}` : '../images/leaf.jpg'
   }
 
   render() {
@@ -83,11 +91,12 @@ class Question extends Component {
       else if (!this.isAuthed()) {
         //show poll, no functionality
         return (
-          <div>
+          <div> 
               <div> Please log in to vote! </div> <br/>
               <div> optionOne: {optionOne.text} </div>
               <div> optionTwo: {optionTwo.text} </div>
               <div> timestamp: {timestamp} </div>
+              <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
               <div> id: {id} </div>
           </div>
         )
@@ -111,8 +120,13 @@ class Question extends Component {
 
 function mapStateToProps (state, { id }) {
   const question = state.questions[id] 
+  const users = state.users
+  let pictureURL = '../images/leaf.jpg'
+  if(question){
+    pictureURL = users[question.author].avatarURL
+  }
   let authedUser = state.authedUser
-  return { authedUser:authedUser, question: question}
+  return { authedUser:authedUser, question:question, pictureURL:pictureURL }
 }
 
 export default withRouter(connect(mapStateToProps)(Question))
