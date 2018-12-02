@@ -76,6 +76,7 @@ class Question extends Component {
               <input type="radio" name="option" value="optionOne" onClick={this.changeOption}/> {optionOne.text}<br/>
               <input type="radio" name="option" value="optionTwo" onClick={this.changeOption}/> {optionTwo.text}<br/>
               <div> timestamp: {timestamp} </div>
+              <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
               <div> id: {id} </div>
               <input type="submit" id="submitButton" disabled={!this.state.optionSelected}/> 
             </form>
@@ -110,6 +111,7 @@ class Question extends Component {
           <div> optionOne: {optionOne.text} </div>
           <div> optionTwo: {optionTwo.text} </div>
           <div> timestamp: {timestamp} </div>
+          <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
           <div> id: {id} </div>
         </Link>
       )
