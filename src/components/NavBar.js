@@ -15,7 +15,7 @@ class NavBar extends React.Component {
   }
 
   isAuthed(){
-    return !(this.props.authedUser.id == '') &&
+    return !(this.props.authedUser.id === '') &&
            !(this.props.authedUser.id == null) ? 
            true : false
   }

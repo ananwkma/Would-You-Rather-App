@@ -46,6 +46,7 @@ class Leaderboard extends Component {
 
 function mapStateToProps (state, propsPassedIn) {
   let users = state.users
+  console.log("users", users)
   let userIds = Object.keys(users)
   return {users:Object.values(users), userIds:userIds}
 }
