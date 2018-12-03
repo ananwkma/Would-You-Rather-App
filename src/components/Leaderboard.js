@@ -18,6 +18,7 @@ class Leaderboard extends Component {
     let score = this.getScore(user)
     return <div key={user.id}>
       <li> User: {user.name} <br/>
+        <div> <img src={`${user.avatarURL}`} alt="icon"/> </div>
         Number of Questions Created: {questionsCreated} <br/>
         Number of Questions Answered: {questionsAnswered} <br/>
     	  Score: {score}
@@ -46,7 +47,6 @@ class Leaderboard extends Component {
 
 function mapStateToProps (state, propsPassedIn) {
   let users = state.users
-  console.log("users", users)
   let userIds = Object.keys(users)
   return {users:Object.values(users), userIds:userIds}
 }
