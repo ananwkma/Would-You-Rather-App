@@ -61,7 +61,7 @@ class Question extends Component {
 
   render() {
     const { question } = this.props;
-    if (question == null) { return <p>This Question doesn't exist</p> }
+    if (question == null) { return <div><h2>404 error</h2> This Question doesn't exist</div> }
     
     const {
       optionOne, optionTwo, timestamp, id
@@ -123,7 +123,7 @@ class Question extends Component {
 function mapStateToProps (state, { id }) {
   const question = state.questions[id] 
   const users = state.users
-  let pictureURL = '../images/leaf.jpg'
+  let pictureURL = ''
   if(question){
     pictureURL = users[question.author].avatarURL
   }
