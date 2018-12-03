@@ -5,7 +5,7 @@ import Home from './Home'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
 import { connect } from 'react-redux'
-import { withRouter, Link, Route } from 'react-router-dom'
+import { withRouter, Link, Route, Redirect } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions'
 
 class NavBar extends React.Component {
@@ -34,21 +34,33 @@ class NavBar extends React.Component {
           <h5> You are not logged in </h5>
         </div>
   }
-  
+
 	render() {
     return (
       <div>    
         <Link to='/'> <button> Home </button> </Link>
       	<Link to='/add'> <button> NewQuestion </button> </Link>
-      	<Link to='/leader'> <button disabled={!this.isAuthed()}> Leaderboards </button> </Link>
+      	<Link to='/leaderboard'> <button> Leaderboards </button> </Link>
+
         { this.displayAuthed() } 
+
         <div className='container'>
-	        <Route path='/' exact component={Home} />
-          <Route path='/add' component={NewQuestion} />
-          <Route path='/leader' component={Leaderboard} />
+	        <Route exact path='/' render={() => (
+            !this.isAuthed() ? 
+              (<Redirect to ='/login'/>) : <Home/>)}/>
+          <Route path='/add' render={() => (
+            !this.isAuthed() ? 
+              (<Redirect to ='/login'/>) : <NewQuestion/>)}/>
+          <Route path='/leaderboard' render={() => (
+            !this.isAuthed() ? 
+              (<Redirect to ='/login'/>) : <Leaderboard/>)}/>
           <Route path='/login' component={Login} />
-          <Route path='/question/:id' component={QuestionPage} /> 
+        {<Route path='/question/:id' component={QuestionPage} />}
+          {/*<Route path='/question/:id' render={() => (
+            !this.isAuthed() ? 
+              (<Redirect to ='/login'/>) : <QuestionPage/>)}/>*/}
         </div>
+
       </div>
     )
 	}

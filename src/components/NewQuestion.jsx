@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { handleSaveQuestion } from '../actions/shared'
 
 class NewQuestion extends Component {
+
   componentDidMount() {
-    this.isAuthed()
+    document.getElementById("submitButton").disabled = true
   }
+
+  validate = () => {
+    const optionOne = document.getElementById("optionOne").value
+    const optionTwo = document.getElementById("optionTwo").value
+    document.getElementById("submitButton").disabled = (optionOne == '' || optionTwo == '')
+  }
+
   saveQuestion = () => {
     const optionOne = document.getElementById("optionOne").value
     const optionTwo = document.getElementById("optionTwo").value
@@ -20,22 +28,19 @@ class NewQuestion extends Component {
       users, 
       qAuthor));
   }
-  isAuthed = () => {
-    let isAuthed = true
-    if (this.props.authedUser.id === "" || this.props.authedUser.length===0) isAuthed = false
-    else isAuthed = true
-    document.getElementById("submitButton").disabled = !isAuthed
-  }
+
   render() {
     return (
       <div>  This is the new question page. <br/>
         <form id="wouldYouRather">
           Would you rather...<br/>
-  		  <input type="text" id="optionOne"/>
+  		  <input type="text" id="optionOne" onChange={this.validate}/>
           <br/> Or <br/>
-          <input type="text" id="optionTwo"/>
+          <input type="text" id="optionTwo" onChange={this.validate}/>
           <br/> ? <br/>
-          <input type="button" id="submitButton" onClick={this.saveQuestion} value="Submit"/>  
+          <Link to='/'>  
+            <input type="button" id="submitButton" onClick={this.saveQuestion} value="Submit"/>  
+          </Link>
         </form>
       </div>
     )

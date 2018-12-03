@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Route, Redirect } from 'react-router-dom'
 import { handleAnswerQuestion } from '../actions'
+import QuestionPage from './QuestionPage'
 
 class Question extends Component {
 
@@ -91,15 +92,7 @@ class Question extends Component {
       }
       else if (!this.isAuthed()) {
         //show poll, no functionality
-        return (
-          <div> 
-              <div> Please log in to vote! </div> <br/>
-              <div> optionOne: {optionOne.text} </div>
-              <div> optionTwo: {optionTwo.text} </div>
-              <div> timestamp: {timestamp} </div>
-              <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
-              <div> id: {id} </div>
-          </div>
+        return (<Redirect to ='/login'/>
         )
       }
     }
@@ -107,16 +100,20 @@ class Question extends Component {
     else {
       //list question details
       return (
-        <Link to={`/question/${id}`} className='question'>
-          <div> optionOne: {optionOne.text} </div>
-          <div> optionTwo: {optionTwo.text} </div>
-          <div> timestamp: {timestamp} </div>
-          <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
-          <div> id: {id} </div>
-        </Link>
+        <div>
+          <Link to={`/question/${id}`} className='question'>
+            <div> optionOne: {optionOne.text} </div>
+            <div> optionTwo: {optionTwo.text} </div>
+            <div> timestamp: {timestamp} </div>
+            <div> <img src={`${this.props.pictureURL}`} alt="icon"/> </div>
+            <div> id: {id} </div>
+          </Link>
+          <Route path={`/question/${id}`} render={() => (
+            !this.isAuthed() ? 
+              (<Redirect to ='/login'/>) : <QuestionPage/>)}/>
+        </div>
       )
     }
-
   }
 }
 

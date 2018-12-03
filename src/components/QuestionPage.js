@@ -9,9 +9,9 @@ class QuestionPage extends Component {
     return (
       <div> 
       	<Question id={id} />
-		<button>
+		    <button>
         	<Link to='/'> Back </Link>
-		</button>
+		    </button>
       </div>
     )
   }
