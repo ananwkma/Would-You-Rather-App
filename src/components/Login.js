@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions'
 
 class Login extends Component { 
@@ -10,9 +10,12 @@ class Login extends Component {
   	if (e!=null) {
         const id = e.options[e.selectedIndex].value;
         if(!(id===""||id.length===0)) {
-          return this.props.dispatch(handleSetAuthedUser({ id: id }));
+          if(this.props.location.state) this.props.history.push(this.props.location.state.redirectUrl)
+          else this.props.history.push('/')
+          return this.props.dispatch(handleSetAuthedUser({ id: id }))
         }
         return 
+        //else set location to home `${this.props.location.state}`
   	}
   }
 
@@ -31,9 +34,7 @@ class Login extends Component {
       return (
           <div>
     	      {this.populateValues()}
-            <Link to='/'> 
-              <button onClick={this.setAuthedUser}>Submit</button> 
-            </Link>
+            <button onClick={this.setAuthedUser}>Submit</button> 
           </div>
       )
 	}

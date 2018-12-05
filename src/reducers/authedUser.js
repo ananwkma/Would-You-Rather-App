@@ -1,5 +1,5 @@
 import {
-  GET_AUTHED_USER, SET_AUTHED_USER, 
+  SET_AUTHED_USER, 
 } from '../actions'
 
 export default function authedUser (state = [], action) {

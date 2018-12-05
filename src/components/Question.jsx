@@ -110,7 +110,8 @@ class Question extends Component {
           </Link>
           <Route path={`/question/${id}`} render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ='/login'/>) : <QuestionPage/>)}/>
+              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              : <QuestionPage/>)}/>
         </div>
       )
     }

@@ -12,7 +12,7 @@ class NewQuestion extends Component {
   validate = () => {
     const optionOne = document.getElementById("optionOne").value
     const optionTwo = document.getElementById("optionTwo").value
-    document.getElementById("submitButton").disabled = (optionOne == '' || optionTwo == '')
+    document.getElementById("submitButton").disabled = (optionOne === '' || optionTwo === '')
   }
 
   saveQuestion = () => {

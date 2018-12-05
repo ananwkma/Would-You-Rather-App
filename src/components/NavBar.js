@@ -43,22 +43,21 @@ class NavBar extends React.Component {
       	<Link to='/leaderboard'> <button> Leaderboards </button> </Link>
 
         { this.displayAuthed() } 
-
         <div className='container'>
 	        <Route exact path='/' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ='/login'/>) : <Home/>)}/>
+              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              : <Home/>)}/>
           <Route path='/add' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ='/login'/>) : <NewQuestion/>)}/>
+              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              : <NewQuestion/>)}/>
           <Route path='/leaderboard' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ='/login'/>) : <Leaderboard/>)}/>
+              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              : <Leaderboard/>)}/>
           <Route path='/login' component={Login} />
-        {<Route path='/question/:id' component={QuestionPage} />}
-          {/*<Route path='/question/:id' render={() => (
-            !this.isAuthed() ? 
-              (<Redirect to ='/login'/>) : <QuestionPage/>)}/>*/}
+          <Route path='/question/:id' component={QuestionPage} />
         </div>
 
       </div>
