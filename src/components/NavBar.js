@@ -23,14 +23,14 @@ class NavBar extends React.Component {
   displayAuthed(){
     if (this.isAuthed()) 
       return <div>
-        <Link to='/'>
-          <button onClick={this.logout}>Logout</button>
-        </Link>
+        <button onClick={this.logout}>Logout</button>
         <h5> Logged in as: {this.props.authedUser.id} </h5>
       </div>
     else 
       return <div>
-          <Link to='/login'> <button> Login </button> </Link>
+          <Link to='/login'> 
+            <button> Login </button> 
+          </Link>
           <h5> You are not logged in </h5>
         </div>
   }
@@ -46,15 +46,15 @@ class NavBar extends React.Component {
         <div className='container'>
 	        <Route exact path='/' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              <Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>
               : <Home/>)}/>
           <Route path='/add' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              <Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/> 
               : <NewQuestion/>)}/>
           <Route path='/leaderboard' render={() => (
             !this.isAuthed() ? 
-              (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+              <Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/> 
               : <Leaderboard/>)}/>
           <Route path='/login' component={Login} />
           <Route path='/question/:id' component={QuestionPage} />

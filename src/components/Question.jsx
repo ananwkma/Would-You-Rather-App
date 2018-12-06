@@ -56,10 +56,6 @@ class Question extends Component {
     )         
   }
 
-  checkPicture () {
-    return (this.props.pictureURL) ? `${this.props.pictureURL}` : '../images/leaf.jpg'
-  }
-
   render() {
     const { question } = this.props;
     if (question == null) { return <div><h2>404 error</h2> This Question doesn't exist</div> }
@@ -92,7 +88,10 @@ class Question extends Component {
       }
       else if (!this.isAuthed()) {
         //show poll, no functionality
-        return (<Redirect to ='/login'/>
+        return (<Route path={`/question/${id}`} render={() => (
+          !this.isAuthed() ? 
+            (<Redirect to ={{pathname: '/login', state: {redirectUrl: this.props.location.pathname}}}/>) 
+            : <QuestionPage/>)}/>
         )
       }
     }

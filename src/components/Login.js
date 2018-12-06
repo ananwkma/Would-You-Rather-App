@@ -15,7 +15,6 @@ class Login extends Component {
           return this.props.dispatch(handleSetAuthedUser({ id: id }))
         }
         return 
-        //else set location to home `${this.props.location.state}`
   	}
   }
 
