@@ -2,6 +2,7 @@ import { SAVE_QUESTION, ANSWER_QUESTION, RECEIVE_QUESTIONS } from '../actions'
 import { /*formatQuestion*/ } from '../utils/helper';
 
 export default function questions (state={}, action) {
+  console.log("questionsstate ", state)
   switch(action.type) {
     case RECEIVE_QUESTIONS:
       return action.questions;

@@ -8,4 +8,4 @@ Run
 
 Description
 
-- A simple polling app with poll creation, login functionality and leaderboard stats   
+- A simple polling app with poll creation, login functionality and leaderboard stats 

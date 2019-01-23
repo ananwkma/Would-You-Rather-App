@@ -3,6 +3,7 @@ import {
 } from '../actions'
 
 export default function users (state = [], action) {
+  console.log("usersstate ", state)
 	switch(action.type) {
       case RECEIVE_USERS :
         return action.users
