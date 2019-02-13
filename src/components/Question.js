@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter, Route, Redirect } from 'react-router-dom'
 import { handleAnswerQuestion } from '../actions'
 import QuestionPage from './QuestionPage'
+import Flexbox from 'flexbox-react';
 
 class Question extends Component {
 
@@ -41,18 +42,18 @@ class Question extends Component {
     let optTwoVotes = thisQuestion.optionTwo.votes.length
     let sumVotes = optOneVotes + optTwoVotes
     return(
-      <div>
-        <div> Number of Votes for option One: {optOneVotes} </div>
+      <Flexbox style={divStyle}>
+        <h1 style={titleStyle}> Question </h1>
+        <div> {thisQuestion.optionOne.text} </div>
+        <div> {100*optOneVotes/sumVotes}% Voted for this ({optOneVotes}) </div> <br/>
         {this.props.question.optionOne.votes.includes(this.props.authedUser.id) ? 
           "You voted for this!" : null}
-        <div> {thisQuestion.optionOne.text} </div>
-        <div> Percentage of Votes: {100*optOneVotes/sumVotes} % </div> <br/>
-        <div> Number of Votes for option Two: {optTwoVotes} </div>
+        
+        <div> {thisQuestion.optionTwo.text} </div>
+        <div> {100*optTwoVotes/sumVotes}% Voted for this ({optTwoVotes}) </div>
         {this.props.question.optionTwo.votes.includes(this.props.authedUser.id) ? 
           "You voted for this!" : null}
-        <div> {thisQuestion.optionTwo.text} </div>
-        <div> Percentage of Votes: {100*optTwoVotes/sumVotes} % </div>
-      </div>
+      </Flexbox>
     )         
   }
 
@@ -126,6 +127,29 @@ function mapStateToProps (state, { id }) {
   }
   let authedUser = state.authedUser
   return { authedUser:authedUser, question:question, pictureURL:pictureURL }
+}
+
+const containerStyle = {
+  padding: 40,
+  flexDirection: 'column',
+}
+const divStyle = {
+  backgroundColor: 'white',
+  alignItems: 'center',
+  flexDirection: 'column',
+  padding: 50,
+  marginTop: 100,
+  marginLeft: 150,
+  marginRight: 150,
+  height: 480,
+  flex: 1,
+  textAlign: 'left',
+};
+const sectionStyle = {
+  padding: 40,
+}
+const titleStyle = {
+  color: '#183059',
 }
 
 export default withRouter(connect(mapStateToProps)(Question))

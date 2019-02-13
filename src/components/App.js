@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
+import Flexbox from 'flexbox-react';
 
 class App extends Component {
   
@@ -14,9 +15,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Flexbox style={backgroundStyle}>
           <NavBar/>
-        </div>
+        </Flexbox>
       </Router>
     );
   }
@@ -25,5 +26,11 @@ class App extends Component {
 function mapStateToProps(state) {
     return {}
 }
+
+const backgroundStyle = {
+  backgroundColor: '#8AA29E',
+  flexDirection: 'column',
+  flex: 1,
+};
 
 export default connect (mapStateToProps) (App)

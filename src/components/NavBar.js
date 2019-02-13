@@ -1,4 +1,5 @@
 import React from 'react'
+import Flexbox from 'flexbox-react';
 import Login from './Login'
 import Leaderboard from './Leaderboard'
 import Home from './Home'
@@ -22,27 +23,20 @@ class NavBar extends React.Component {
 
   displayAuthed(){
     if (this.isAuthed()) 
-      return <div>
-        <button onClick={this.logout}>Logout</button>
-        <h5> Logged in as: {this.props.authedUser.id} </h5>
-      </div>
+      return <button onClick={this.logout}>LOGOUT</button>
     else 
-      return <div>
-          <Link to='/login'> 
-            <button> Login </button> 
-          </Link>
-          <h5> You are not logged in </h5>
-        </div>
+      return <Link to='/login' style={navButton}> LOGIN </Link>
   }
 
 	render() {
     return (
-      <div>    
-        <Link to='/'> <button> Home </button> </Link>
-      	<Link to='/add'> <button> NewQuestion </button> </Link>
-      	<Link to='/leaderboard'> <button> Leaderboards </button> </Link>
-
-        { this.displayAuthed() } 
+      <div>  
+        <Flexbox justifyContent="center" style={divStyle}>  
+          <Link to='/' style={title}> WOULD YOU RATHER </Link>
+        	<Link to='/add' style={navButton}> NEW QUESTION </Link>
+        	<Link to='/leaderboard' style={navButton}> LEADERBOARDS </Link>
+          { this.displayAuthed() } 
+        </Flexbox>
         <div className='container'>
 	        <Route exact path='/' render={() => (
             !this.isAuthed() ? 
@@ -59,7 +53,6 @@ class NavBar extends React.Component {
           <Route path='/login' component={Login} />
           <Route path='/question/:id' component={QuestionPage} />
         </div>
-
       </div>
     )
 	}
@@ -70,5 +63,25 @@ function mapStateToProps(state) {
   let authedUser = state.authedUser
   return { authedUser:authedUser }
 }
+
+const divStyle = {
+  backgroundColor: '#183059',
+};
+const title = {
+  fontSize: '27px',
+  textAlign: 'center',
+  color: 'white',
+  fontFamily: 'arial-black',
+  padding: 40,
+  textDecoration: 'none',
+}
+const navButton = {
+  fontSize: '15px',
+  textAlign: 'center',
+  color: 'white',
+  fontFamily: 'arial-black',
+  padding: 40,
+  textDecoration: 'none',
+};
 
 export default withRouter (connect(mapStateToProps)(NavBar))

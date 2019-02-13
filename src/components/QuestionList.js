@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Question from './Question'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import Flexbox from 'flexbox-react';
 
 class QuestionList extends Component {
   state = {
@@ -41,11 +42,13 @@ class QuestionList extends Component {
   
   render() {
     return (
-      <div>
-        <button onClick={() => this.setState({showUnanswered: true})}> Unanswered Questions </button>
-        <button onClick={() => this.setState({showUnanswered: false})}> Answered Questions </button>
+      <Flexbox style={containerStyle}>
+        <Flexbox style={sectionStyle}>
+          <button onClick={() => this.setState({showUnanswered: true})}> Unanswered Questions </button>
+          <button onClick={() => this.setState({showUnanswered: false})}> Answered Questions </button>
+        </Flexbox>
         { this.props.questionIds ? this.renderQuestions() : null }
-	  </div>
+	    </Flexbox>
     )
   }
 }
@@ -56,6 +59,14 @@ function mapStateToProps(state) {
   let questionIds = Object.keys(questions)
         .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   return {authedUser:authedUser, questionIds:questionIds}
+}
+
+const containerStyle = {
+  padding: 40,
+  flexDirection: 'column',
+}
+const sectionStyle = {
+  padding: 40,
 }
 
 export default withRouter(connect(mapStateToProps)(QuestionList))
