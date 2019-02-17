@@ -4,9 +4,6 @@ import { withRouter } from 'react-router-dom'
 import Flexbox from 'flexbox-react';
 
 class Leaderboard extends Component {
-  state = {
-    place: 1
-  }
   getQuestionsCreated = (user) => {
     return user.questions.length
   }
@@ -16,14 +13,14 @@ class Leaderboard extends Component {
 	getScore = (user) => {
       return this.getQuestionsCreated(user) + this.getQuestionsAnswered(user)
   }
-	renderUsers = (user) => {
+	renderUsers = (user, place) => {
     let questionsCreated = this.getQuestionsCreated(user)
     let questionsAnswered = this.getQuestionsAnswered(user)
     let score = this.getScore(user)
     return <div key={user.id}>
 
       <Flexbox style={questionStyle}>
-        <h2 style={placementStyle}> {`${this.state.place++}`} </h2>
+        <h2 style={placementStyle}> {`${place}`} </h2>
         <Flexbox style={profpicStyle}> <img src={`${user.avatarURL}`} alt="icon"/> </Flexbox>
         <Flexbox style={detailsStyle}> 
           <div style={userStyle}> {`@${user.id} |`} </div>
@@ -41,9 +38,10 @@ class Leaderboard extends Component {
       let user1score = this.getScore(user1)
       let user2score = this.getScore(user2)
    	  return user2score - user1score })
+    let place = 1
     return <ul> 
       <h1 style={titleStyle}> Leaderboards </h1>
-      {users.map(user => this.renderUsers(user))}
+      {users.map(user => this.renderUsers(user, place++))}
     </ul>;
   }
   
