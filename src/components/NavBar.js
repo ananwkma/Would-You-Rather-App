@@ -23,7 +23,8 @@ class NavBar extends React.Component {
 
   displayAuthed(){
     if (this.isAuthed()) 
-      return <button onClick={this.logout}>LOGOUT</button>
+      return <Link to='/login' style={navButton} onClick={this.logout}> 
+          <img src={`${this.props.avatarURL}`} style={profpicStyle} alt={`Hello ${this.props.authedUser.id}!`}/>  LOGOUT </Link>
     else 
       return <Link to='/login' style={navButton}> LOGIN </Link>
   }
@@ -61,9 +62,15 @@ class NavBar extends React.Component {
 
 function mapStateToProps(state) {
   let authedUser = state.authedUser
-  return { authedUser:authedUser }
+  let users = state.users
+  let avatarURL = ''
+  if (authedUser.id) avatarURL = users[authedUser.id].avatarURL
+  return { authedUser:authedUser, avatarURL:avatarURL}
 }
 
+const profpicStyle = {
+  height: 20,
+}
 const divStyle = {
   backgroundColor: '#183059',
 };
@@ -76,6 +83,14 @@ const title = {
   textDecoration: 'none',
 }
 const navButton = {
+  fontSize: '15px',
+  textAlign: 'center',
+  color: 'white',
+  fontFamily: 'arial-black',
+  padding: 40,
+  textDecoration: 'none',
+};
+const welcomeStyle = {
   fontSize: '15px',
   textAlign: 'center',
   color: 'white',

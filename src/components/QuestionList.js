@@ -16,7 +16,7 @@ class QuestionList extends Component {
         let answeredQuestions = Object.keys(thisUser.answers)
          //unanswered questions
         if (unanswered) {
-          return <ul>
+          return <ul style={listStyle}>
             {questionIds
               .filter(id => !answeredQuestions.includes(id))
               .map(aId => (<li key={aId}> <Question id={aId}/> </li>))
@@ -25,7 +25,7 @@ class QuestionList extends Component {
         }
         //answered questions
         else if (!unanswered) {
-          return <ul>
+          return <ul style={listStyle}>
             {questionIds
               .map(id => (answeredQuestions
               .map(aId => ((aId === id) ?  <li key={aId}> <Question id={aId}/> </li> : null))
@@ -33,7 +33,7 @@ class QuestionList extends Component {
           </ul>
         } 
       }
-      else return <ul>
+      else return <ul style={listStyle}>
         {questionIds
           .map(id => <li key={id}> <Question id={id}/> </li>)}
       </ul>
@@ -43,11 +43,11 @@ class QuestionList extends Component {
   render() {
     return (
       <Flexbox style={containerStyle}>
-        <Flexbox style={sectionStyle}>
-          <button onClick={() => this.setState({showUnanswered: true})}> Unanswered Questions </button>
-          <button onClick={() => this.setState({showUnanswered: false})}> Answered Questions </button>
+        <Flexbox style={tabsStyle}>
+          <Flexbox style={activeTabStyle} onClick={() => this.setState({showUnanswered: true})}> Unanswered Questions </Flexbox>
+          <Flexbox style={inactiveTabStyle} onClick={() => this.setState({showUnanswered: false})}> Answered Questions </Flexbox>
         </Flexbox>
-        { this.props.questionIds ? this.renderQuestions() : null }
+          { this.props.questionIds ? this.renderQuestions() : null } 
 	    </Flexbox>
     )
   }
@@ -61,12 +61,35 @@ function mapStateToProps(state) {
   return {authedUser:authedUser, questionIds:questionIds}
 }
 
+const listStyle = {
+  listStyleType: 'none',
+}
 const containerStyle = {
-  padding: 40,
+  justifyContent: 'center',
   flexDirection: 'column',
 }
-const sectionStyle = {
-  padding: 40,
+const tabsStyle = {
+  paddingTop: 40,
+  paddingLeft: 190,
+}
+const questionsStyle = {
+  paddingLeft: 40,
+  paddingRight: 40,
+  justifyContent: 'center',
+}
+const activeTabStyle = {
+  color: 'white',
+  backgroundColor: '#183059',
+  padding: 10,
+  fontWeight: 'bold',
+  fontFamily: 'Roboto',
+}
+const inactiveTabStyle = {
+  color: '#183059',
+  backgroundColor: 'white',
+  padding: 10,
+  fontWeight: 'bold',
+  fontFamily: 'Roboto',
 }
 
 export default withRouter(connect(mapStateToProps)(QuestionList))

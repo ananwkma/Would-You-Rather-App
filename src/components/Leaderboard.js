@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import Flexbox from 'flexbox-react';
 
 class Leaderboard extends Component {
+  state = {
+    place: 1
+  }
   getQuestionsCreated = (user) => {
     return user.questions.length
   }
@@ -17,12 +21,18 @@ class Leaderboard extends Component {
     let questionsAnswered = this.getQuestionsAnswered(user)
     let score = this.getScore(user)
     return <div key={user.id}>
-      <li> User: {user.name} <br/>
-        <div> <img src={`${user.avatarURL}`} alt="icon"/> </div>
-        Number of Questions Created: {questionsCreated} <br/>
-        Number of Questions Answered: {questionsAnswered} <br/>
-    	  Score: {score}
-      </li>
+
+      <Flexbox style={questionStyle}>
+        <h2 style={placementStyle}> {`${this.state.place++}`} </h2>
+        <Flexbox style={profpicStyle}> <img src={`${user.avatarURL}`} alt="icon"/> </Flexbox>
+        <Flexbox style={detailsStyle}> 
+          <div style={userStyle}> {`@${user.id} |`} </div>
+          <Flexbox style={scoreContainerStyle}> Number of Questions Created: {questionsCreated} </Flexbox>
+          <Flexbox style={scoreContainerStyle}> Number of Questions Answered:{questionsAnswered} </Flexbox> 
+          <Flexbox style={scoreContainerStyle}> Score: {score} </Flexbox>
+        </Flexbox>
+      </Flexbox>
+
     </div>
   }
   renderLeaderboard() {
@@ -32,15 +42,16 @@ class Leaderboard extends Component {
       let user2score = this.getScore(user2)
    	  return user2score - user1score })
     return <ul> 
+      <h1 style={titleStyle}> Leaderboards </h1>
       {users.map(user => this.renderUsers(user))}
     </ul>;
   }
   
   render() {
     return (
-      <div> 
+      <Flexbox style={divStyle}>
        { this.props.userIds ? this.renderLeaderboard() : null }
-	  </div>
+	  </Flexbox>
     )
   }
 }
@@ -49,6 +60,55 @@ function mapStateToProps (state, propsPassedIn) {
   let users = state.users
   let userIds = Object.keys(users)
   return {users:Object.values(users), userIds:userIds}
+}
+
+const titleStyle = {
+  color: '#183059',
+  fontSize: 38,
+  textAlign: 'center'
+}
+const divStyle = {
+  backgroundColor: 'white',
+  alignItems: 'center',
+  flexDirection: 'column',
+  padding: 50,
+  marginTop: 100,
+  marginLeft: 150,
+  marginRight: 150,
+  height: 480,
+  flex: 1,
+  textAlign: 'left',
+}
+const placementStyle = {
+  fontSize: 38,
+  color: '#183059',
+  marginRight: 50,
+  fontWeight: '900'
+}
+const questionStyle = {
+  flexDirection: 'row',
+  alignItems: 'left',
+}
+const detailsStyle = {
+  flexDirection: 'column',
+  fontSize: 18,
+  color: '#5D5D5D',
+  opacity: 80,
+  marginTop: 15,
+  fontFamily: 'Roboto',
+  fontWeight: 'bold',
+}
+const profpicStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginRight: 10,
+}
+const userStyle = {
+  color: 'black',
+}
+const scoreContainerStyle = {
+  marginLeft: 20,
+  flexDirection: 'row'
 }
 
 export default withRouter(connect(mapStateToProps)(Leaderboard))

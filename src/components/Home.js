@@ -6,9 +6,7 @@ import QuestionList from './QuestionList'
 class Home extends Component {
   render() {
     return (
-      <div>
         <QuestionList/>
-	    </div>
     )
   }
 }

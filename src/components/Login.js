@@ -62,6 +62,7 @@ const sectionStyle = {
 }
 const titleStyle = {
   color: '#183059',
+  fontSize: 38,
 }
 
 export default withRouter(connect(mapStateToProps)(Login))

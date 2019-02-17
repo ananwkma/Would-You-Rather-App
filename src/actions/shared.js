@@ -14,7 +14,7 @@ export function handleSaveQuestion(question, users, authedUser) {
   return (dispatch) => {
   	_saveQuestion(question) 
       .then((formattedQuestion) => {
-    	dispatch(saveQuestion(formattedQuestion, users, authedUser))
+    	  dispatch(saveQuestion(formattedQuestion, users, authedUser))
       });
   };
 }
