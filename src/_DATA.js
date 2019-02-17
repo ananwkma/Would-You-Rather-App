@@ -2,7 +2,7 @@ let users = {
   TSwift: {
     id: 'TSwift',
     name: 'Taylor Swift',
-    avatarURL: '../../images/snow.jpg',
+    avatarURL: '../../images/tswift.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,7 +14,7 @@ let users = {
   Anan: {
     id: 'Anan',
     name: 'Anan Ma',
-    avatarURL: '../../images/tyler.jpg',
+    avatarURL: '../../images/anan.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   CurtisJackson: {
     id: 'CurtisJackson',
     name: '50 Cent',
-    avatarURL: '../../images/leaf.jpg',
+    avatarURL: '../../images/50cent.jpeg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

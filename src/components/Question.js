@@ -69,7 +69,7 @@ class Question extends Component {
 
   render() {
     const { question } = this.props;
-    if (question == null) { return <div><h2>404 error</h2> This Question doesn't exist</div> }
+    if (question == null) { return <div style={divStyle}><h2>404 error</h2> This Question doesn't exist</div> }
     
     const {
       optionOne, optionTwo, timestamp, id
