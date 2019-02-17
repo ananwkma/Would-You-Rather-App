@@ -90,13 +90,5 @@ const navButton = {
   padding: 40,
   textDecoration: 'none',
 };
-const welcomeStyle = {
-  fontSize: '15px',
-  textAlign: 'center',
-  color: 'white',
-  fontFamily: 'arial-black',
-  padding: 40,
-  textDecoration: 'none',
-};
 
 export default withRouter (connect(mapStateToProps)(NavBar))

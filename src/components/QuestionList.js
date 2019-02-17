@@ -72,11 +72,6 @@ const tabsStyle = {
   paddingTop: 40,
   paddingLeft: 190,
 }
-const questionsStyle = {
-  paddingLeft: 40,
-  paddingRight: 40,
-  justifyContent: 'center',
-}
 const activeTabStyle = {
   color: 'white',
   backgroundColor: '#183059',

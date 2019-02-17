@@ -165,21 +165,6 @@ function mapStateToProps (state, { id }) {
   return { authedUser:authedUser, question:question, pictureURL:pictureURL, userName:userName, username:username }
 }
 
-const resultsPageStyle = {
-  backgroundColor: 'white',
-  alignItems: 'center',
-  flexDirection: 'column',
-  padding: 50,
-  marginTop: 100,
-  marginLeft: 150,
-  marginRight: 150,
-  height: 480,
-  flex: 1,
-  textAlign: 'left',
-}
-const pictureContainerStyle = {
-  flexDirection: 'row',
-}
 const statsContainerStyle = {
   flexDirection: 'column',
   marginLeft: 15,
@@ -199,10 +184,6 @@ const titleContainerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   marginBottom: 15,
-}
-const containerStyle = {
-  padding: 40,
-  flexDirection: 'column',
 }
 const divStyle = {
   backgroundColor: 'white',
@@ -252,7 +233,6 @@ const wouldYouRatherStyle = {
   color: 'black',
   fontWeight: 'bold',
   fontFamily: 'Roboto',
-  color: '#000000',
 }
 const optionStyle = {
   fontSize: 15,
