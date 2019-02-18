@@ -89,6 +89,7 @@ const navButton = {
   fontFamily: 'arial-black',
   padding: 40,
   textDecoration: 'none',
+  alignSelf: 'center',
 };
 
 export default withRouter (connect(mapStateToProps)(NavBar))
