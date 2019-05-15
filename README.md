@@ -1,19 +1,23 @@
-Install
+# Would-You-Rather-App
 
-- npm install
+## Description
 
-Run
+A simple polling app with poll creation, voting, login functionality and leaderboard stats. Written in React with Redux, mockup created in Sketch.
 
-- npm start
+## Run this Project
 
-Description
+Clone this project and navigate into the directory and run:
 
-- A simple polling app with poll creation, login functionality and leaderboard stats 
+```
+npm install
+npm start
+```
+## Links
 
 Mockup
 
-https://github.com/ananwkma/Would-You-Rather-App/blob/master/WouldYouRather.pdf
+- https://github.com/ananwkma/Would-You-Rather-App/blob/master/WouldYouRather.pdf
 
 Live Project Link
 
-http://35.236.21.220:3000/login
+- http://35.236.21.220:3000/login
